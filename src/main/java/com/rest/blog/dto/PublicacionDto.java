@@ -2,16 +2,18 @@ package com.rest.blog.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @ToString
 public class PublicacionDto implements Serializable {
-    private final Long id;
-    private final String titulo;
-    private final String descripcion;
-    private final String contenido;
+    private Long id;
+    private String titulo;
+    private String descripcion;
+    private String contenido;
 }
