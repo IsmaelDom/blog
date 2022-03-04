@@ -18,15 +18,13 @@ public class PublicacionServiceImpl implements IPublicacionService {
     private IPublicacionRepository publicacionRepository;
 
     @Override
-    public PublicacionDto crarPublicacion(PublicacionDto publicacionDto) {
+    public String crarPublicacion(PublicacionDto publicacionDto) {
         Publicacion publicacion = new Publicacion();
-        PublicacionDto publicacionResp = new PublicacionDto();
         ModelMapper modelMapper = new ModelMapper();
         publicacion = modelMapper.map(publicacionDto, Publicacion.class);
 
-        Publicacion nuevaPublicacion = publicacionRepository.save(publicacion);
-        publicacionResp = modelMapper.map(nuevaPublicacion, PublicacionDto.class);
+        publicacionRepository.save(publicacion);
 
-        return publicacionResp;
+        return publicacionDto.getTitulo();
     }
 }
