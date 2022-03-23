@@ -4,6 +4,8 @@ import com.rest.blog.dto.PublicacionDto;
 import com.rest.blog.service.IPublicacionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,7 @@ public class PublicacionController {
             value = "guardarPublicacion",
             notes = "Guarda las publicaciones con los datos ingresados por el usuario"
     )
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<String> guardarPublicacion(@RequestBody PublicacionDto publicacionDto) {
         return new ResponseEntity<>(publicacionService.crarPublicacion(publicacionDto), HttpStatus.CREATED);
     }

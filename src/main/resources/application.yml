@@ -16,10 +16,10 @@ spring:
     initial-size: 10
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  security:
-    user:
-      name: usuario
-      password: 12345
+  #security:
+    #user:
+      #name: usuario
+      #password: 12345
 
   jpa:
     properties:
@@ -32,22 +32,25 @@ spring:
     pathmatch:
       matching-strategy: ant-path-matcher
 
-    security:
-      oauth2:
-        client:
-          registration:
-            login-client:
-              provider: local-authz
-              cliente-id: client-1234
-              client-secret: secret
-              cliente-authentication-method: basic
-              authorization-grant-type: authorization-code
-              scope: profile
-              redirect-uri-template: "{baseurl}/login/oauth2/code/{registrationId}"
-              cliente-name: Login
-          provider:
-            local-authz:
-              authorization-uri: http://auth-server:8090/oauth/authorize
-              token-uri: http://auth-server:8090/oauth/token
-              user-info-uri: http://auth-server:8090/resources/userinfo
-              user-name-attribute: name
+  springdoc:
+    api-docs:
+      path : /blog-openapi
+    #security:
+      #oauth2:
+        #client:
+          #registration:
+            #login-client:
+              #provider: local-authz
+              #cliente-id: client-1234
+              #client-secret: secret
+              #cliente-authentication-method: basic
+              #authorization-grant-type: authorization-code
+              #scope: profile
+              #redirect-uri-template: "{baseurl}/login/oauth2/code/{registrationId}"
+              #cliente-name: Login
+          #provider:
+            #local-authz:
+              #authorization-uri: http://auth-server:8090/oauth/authorize
+              #token-uri: http://auth-server:8090/oauth/token
+              #user-info-uri: http://auth-server:8090/resources/userinfo
+              #user-name-attribute: name
