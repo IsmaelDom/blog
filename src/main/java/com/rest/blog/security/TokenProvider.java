@@ -21,11 +21,18 @@ public class TokenProvider extends JWTAuthorizationFilter {
 	public static String generateToken(String usuario, List<Rol> idRol, long idUsuario, Integer tiempoToken) {
 		
 		final Integer segundos = tiempoToken;
-		List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
+		List<String> roles = idRol.stream()
+				.map(item -> item.getNombre())
+				.collect(Collectors.toList());
+		/*final String authorities = idRol.stream()
+				.map(GrantedAuthority::getAuthority)
+				.collect(Collectors.joining(","));*/
+
+		List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
 		String token = Jwts.builder().setId("BlogJWT").setSubject(usuario)
 				.claim("authorities",
 						grantedAuthorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-				//.claim("role", idRol)
+				.claim("role", roles)
 				.claim("usuario", idUsuario).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + segundos))
 				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).compact();

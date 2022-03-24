@@ -26,7 +26,7 @@ public class PublicacionController {
             value = "guardarPublicacion",
             notes = "Guarda las publicaciones con los datos ingresados por el usuario"
     )
-    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+    //Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<String> guardarPublicacion(@RequestBody PublicacionDto publicacionDto) {
         return new ResponseEntity<>(publicacionService.crarPublicacion(publicacionDto), HttpStatus.CREATED);
     }
